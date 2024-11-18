@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora Financeira</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .calculator {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 300px;
+        }
+        h1 {
+            text-align: center;
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+        input[type="number"], input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #28a745;
+            border: none;
+            color: white;
+            font-size: 18px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #218838;
+        }
+        .result {
+            margin-top: 20px;
+            font-size: 18px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="calculator">
+        <h1>Calculadora Financeira</h1>
+        <input type="number" id="principal" placeholder="Capital Inicial (R$)" />
+        <input type="number" id="rate" placeholder="Taxa de Juros (%)" />
+        <input type="number" id="time" placeholder="Período (anos)" />
+        <button onclick="calcularJuros()">Calcular Juros Simples</button>
+        <div class="result" id="result"></div>
+    </div>
+
+    <script>
+        function calcularJuros() {
+            const principal = parseFloat(document.getElementById('principal').value);
+            const rate = parseFloat(document.getElementById('rate').value);
+            const time = parseFloat(document.getElementById('time').value);
+            
+            if (isNaN(principal) || isNaN(rate) || isNaN(time)) {
+                document.getElementById('result').innerHTML = "Por favor, preencha todos os campos!";
+                return;
+            }
+
+            // Fórmula de Juros Simples: J = P * i * t
+            const juros = principal * (rate / 100) * time;
+            const total = principal + juros;
+
+            document.getElementById('result').innerHTML = `Juros: R$ ${juros.toFixed(2)}<br>Total a pagar: R$ ${total.toFixed(2)}`;
+        }
+    </script>
+
+</body>
+</html>
